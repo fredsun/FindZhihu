@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.findzhihu.view.FrameInterceptLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/intercept_layout">
+
+        <com.findzhihu.view.ObservableRecyclerView
+            android:id="@+id/recyclerview_first_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </com.findzhihu.view.FrameInterceptLayout>
+    <include
+        android:id="@+id/detail_toolbar"
+        layout="@layout/toolbar_fragment" />
+</FrameLayout>

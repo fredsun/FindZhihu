@@ -87,8 +87,11 @@ public class BottomBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
     public void showBottom(){
-        mBottomAnim.show();
-        isHide = false;
+        if (isHide){
+            mBottomAnim.show();
+            isHide = false;
+        }
+
     }
 
 

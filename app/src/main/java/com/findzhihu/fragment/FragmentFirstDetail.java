@@ -1,32 +1,23 @@
-package com.findzhihu;
+package com.findzhihu.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.findzhihu.adapter.FirstFragmentAdapter;
+import com.findzhihu.R;
 import com.findzhihu.anim.BottomBehaviorAnim;
 import com.findzhihu.anim.TitleBehaviorAnim;
-import com.findzhihu.backinterface.BackHandlerHelper;
 import com.findzhihu.backinterface.FragmentBackHandler;
 import com.findzhihu.view.ObservableScrollView;
 import com.findzhihu.view.ObservableScrollViewCallbacks;
 import com.findzhihu.view.ScrollState;
-
-import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by fred on 2017/11/13.
@@ -169,7 +160,6 @@ public class FragmentFirstDetail extends Fragment implements ObservableScrollVie
         if (parentFragment instanceof ObservableScrollViewCallbacks) {
             scrollHome.setScrollViewCallbacks((ObservableScrollViewCallbacks) parentFragment);
         }
-
         toolbarDetail = view.findViewById(R.id.detail_toolbar);
         toolbarDetail.setTitle("FragmentFirstDetail");
         tvDetailBottom = view.findViewById(R.id.tv_detail_bottom);
@@ -180,7 +170,6 @@ public class FragmentFirstDetail extends Fragment implements ObservableScrollVie
         FragmentFirstDetail fragmentFirstDetail = new FragmentFirstDetail();
         return fragmentFirstDetail;
     }
-
 
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {}
@@ -228,18 +217,13 @@ public class FragmentFirstDetail extends Fragment implements ObservableScrollVie
     }
 
     @Override
-    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-
-    }
-
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {}
 
     @Override
     public boolean onBackPressed() {
         if (getParentFragment() instanceof FragmentTransFirst){
-            ((FragmentTransFirst) getParentFragment()).showPagingFragment();
+            ((FragmentTransFirst) getParentFragment()).showListFragment();
         }
         return true;
-
-
     }
 }

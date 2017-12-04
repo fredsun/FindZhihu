@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.findzhihu.backinterface.BackHandlerHelper;
 import com.findzhihu.behavior.BottomBehavior;
+import com.findzhihu.fragment.FragmentCommon;
+import com.findzhihu.fragment.FragmentTransFirst;
 import com.findzhihu.view.NonSwipeableViewPager;
 
 import java.util.ArrayList;
@@ -29,13 +31,10 @@ public class MainActivity extends AppCompatActivity implements BottomBehavior.on
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         fragmentList.add(FragmentTransFirst.newInstance());
         fragmentList.add(FragmentCommon.newInstance());
         fragmentList.add(FragmentCommon.newInstance());
         fragmentList.add(FragmentCommon.newInstance());
-
-
         mainPager = findViewById(R.id.main_pager);
         mainPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements BottomBehavior.on
                 }
             }
         });
-
         mainTab = findViewById(R.id.main_tab);
         mainTab.setupWithViewPager(mainPager);
         mainTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -80,27 +78,22 @@ public class MainActivity extends AppCompatActivity implements BottomBehavior.on
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
         mBottomBehavior = (BottomBehavior)((CoordinatorLayout.LayoutParams) mainTab.getLayoutParams()).getBehavior();
         mBottomBehavior.setOnCanScrollCallback(this);
     }
 
     public void bringViewPagerToFront(){
-//        mainPager.bringToFront();//和知乎不同
         mainTab.setVisibility(View.GONE);
+        mBottomBehavior.showBottom();
     }
 
     public void bringViewPagerToBack(){
         mainTab.setVisibility(View.VISIBLE);
-        mBottomBehavior.showBottom();
     }
 
     @Override

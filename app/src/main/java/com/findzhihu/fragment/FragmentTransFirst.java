@@ -1,4 +1,4 @@
-package com.findzhihu;
+package com.findzhihu.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,10 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.findzhihu.MainActivity;
+import com.findzhihu.R;
 import com.findzhihu.backinterface.BackHandlerHelper;
 import com.findzhihu.backinterface.FragmentBackHandler;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by fred on 2017/11/13.
@@ -37,22 +37,39 @@ public class FragmentTransFirst extends Fragment implements FragmentBackHandler{
 
     public static FragmentTransFirst newInstance(){
         FragmentTransFirst fragmentTransFirst = new FragmentTransFirst();
-
         return fragmentTransFirst;
     }
 
-    public void transFragment(){
-        getChildFragmentManager().beginTransaction().hide(fragmentFirst).show(fragmentFirstDetail).commit();
+    /*
+    * @Description: 切换 ListFragment 为 DetailFragment
+    *  先把toolbar从可能的 behavior 隐藏里放出来
+    *  再把 MainActivity 的 TabLayout GONE 掉后再从可能的 behavior 隐藏里出来
+    *  最后hide, show, commit.
+    * @author: fred
+    * @date: 2017/12/4
+    * @attention:
+    */
+    public void showDetailFragment(){
+        fragmentFirst.showToolBar();
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToFront();
         }
+        getChildFragmentManager().beginTransaction().hide(fragmentFirst).show(fragmentFirstDetail).commit();
     }
 
-    public void showPagingFragment(){
-        getChildFragmentManager().beginTransaction().hide(fragmentFirstDetail).show(fragmentFirst).commit();
+    /*
+    * @Description: 切换 DetailFragment 为 ListFragment
+    *  先把TabLayout VISIBLE
+    *  再hide, show, commit
+    * @author: fred
+    * @date: 2017/12/4
+    * @attention:
+    */
+    public void showListFragment(){
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToBack();
         }
+        getChildFragmentManager().beginTransaction().hide(fragmentFirstDetail).show(fragmentFirst).commit();
     }
 
     @Override

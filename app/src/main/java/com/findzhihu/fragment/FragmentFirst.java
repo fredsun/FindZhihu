@@ -1,4 +1,4 @@
-package com.findzhihu;
+package com.findzhihu.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 
+import com.findzhihu.R;
 import com.findzhihu.adapter.FirstFragmentAdapter;
 import com.findzhihu.anim.TitleBehaviorAnim;
 import com.findzhihu.backinterface.BackHandlerHelper;
@@ -23,8 +24,6 @@ import com.findzhihu.view.ObservableScrollViewCallbacks;
 import com.findzhihu.view.ScrollState;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 
 /**
@@ -66,12 +65,8 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
         recyclerFirstFragment.addOnItemTouchListener(new RecyclerViewClickListener(getContext(), recyclerFirstFragment, new RecyclerViewClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (getActivity() instanceof MainActivity){
-                    ((MainActivity)getActivity()).bringViewPagerToBack();
-                    mTitleAnim.show();
-                }
                 if (getParentFragment() instanceof FragmentTransFirst){
-                    ((FragmentTransFirst) getParentFragment()).transFragment();
+                    ((FragmentTransFirst) getParentFragment()).showDetailFragment();
                 }
             }
 
@@ -144,4 +139,10 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
         return BackHandlerHelper.handleBackPress(this);
     }
 
+    public void showToolBar(){
+        if (isTitleHide){
+            mTitleAnim.show();
+            isTitleHide = false;
+        }
+    }
 }

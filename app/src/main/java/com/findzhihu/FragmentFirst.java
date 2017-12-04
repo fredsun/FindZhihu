@@ -53,7 +53,7 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
         Fragment parentFragment = getParentFragment();
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         for (int i = 0; i < 30; i++){
-            mList.add("i");
+            mList.add(i+"");
         }
         mAdapter = new FirstFragmentAdapter(mList);
         mLinearLayoutManager = new LinearLayoutManager(getContext());

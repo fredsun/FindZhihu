@@ -44,15 +44,19 @@ public class FirstTransFragment extends Fragment implements FragmentBackHandler{
     * @Description: 切换 ListFragment 为 DetailFragment
     *  先把toolbar从可能的 behavior 隐藏里放出来
     *  再把 MainActivity 的 TabLayout GONE 掉后再从可能的 behavior 隐藏里出来
-    *  最后hide, show, commit.
+    *  最后hide, show, commit.如果已经退出一次, 先add,commit再show,commit
     * @author: fred
-    * @date: 2017/12/4
+    * @date: 2017/12/5
     * @attention:
     */
     public void showDetailFragment(){
         firstListFragment.showToolBar();
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToFront();
+        }
+        if (null == firstDetailFragment){
+            firstDetailFragment = FirstDetailFragment.newInstance();
+            getChildFragmentManager().beginTransaction().add(R.id.content, firstDetailFragment,"firstDetailFragment" ).commit();
         }
         getChildFragmentManager().beginTransaction().hide(firstListFragment).show(firstDetailFragment).commit();
     }
@@ -69,7 +73,9 @@ public class FirstTransFragment extends Fragment implements FragmentBackHandler{
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToBack();
         }
-        getChildFragmentManager().beginTransaction().hide(firstDetailFragment).show(firstListFragment).commit();
+//        getChildFragmentManager().beginTransaction().hide(firstDetailFragment).show(firstListFragment).commit();
+        getChildFragmentManager().beginTransaction().remove(firstDetailFragment).show(firstListFragment).commit();
+        firstDetailFragment = null;
     }
 
     @Override

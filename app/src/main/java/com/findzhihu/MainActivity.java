@@ -11,8 +11,8 @@ import android.view.View;
 
 import com.findzhihu.backinterface.BackHandlerHelper;
 import com.findzhihu.behavior.BottomBehavior;
-import com.findzhihu.fragment.FragmentCommon;
-import com.findzhihu.fragment.FragmentTransFirst;
+import com.findzhihu.fragment.CommonFragment;
+import com.findzhihu.fragment.FirstTransFragment;
 import com.findzhihu.view.NonSwipeableViewPager;
 
 import java.util.ArrayList;
@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity implements BottomBehavior.on
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentList.add(FragmentTransFirst.newInstance());
-        fragmentList.add(FragmentCommon.newInstance());
-        fragmentList.add(FragmentCommon.newInstance());
-        fragmentList.add(FragmentCommon.newInstance());
+        fragmentList.add(FirstTransFragment.newInstance());
+        fragmentList.add(CommonFragment.newInstance());
+        fragmentList.add(CommonFragment.newInstance());
+        fragmentList.add(CommonFragment.newInstance());
         mainPager = findViewById(R.id.main_pager);
         mainPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

@@ -18,26 +18,26 @@ import com.findzhihu.backinterface.FragmentBackHandler;
  * Created by fred on 2017/11/13.
  */
 
-public class FragmentTransFirst extends Fragment implements FragmentBackHandler{
-    private FragmentFirst fragmentFirst;
-    private FragmentFirstDetail fragmentFirstDetail;
+public class FirstTransFragment extends Fragment implements FragmentBackHandler{
+    private FirstListFragment firstListFragment;
+    private FirstDetailFragment firstDetailFragment;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trans_first, container, false);
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        fragmentFirst = FragmentFirst.newInstance();
-        fragmentFirstDetail = FragmentFirstDetail.newInstance();
-        fragmentTransaction.add(R.id.content, fragmentFirst,"fragmentFirst" );
-        fragmentTransaction.add(R.id.content, fragmentFirstDetail,"fragmentFirstDetail" );
-        fragmentTransaction.show(fragmentFirst).hide(fragmentFirstDetail).commit();
+        firstListFragment = FirstListFragment.newInstance();
+        firstDetailFragment = FirstDetailFragment.newInstance();
+        fragmentTransaction.add(R.id.content, firstListFragment,"firstListFragment" );
+        fragmentTransaction.add(R.id.content, firstDetailFragment,"firstDetailFragment" );
+        fragmentTransaction.show(firstListFragment).hide(firstDetailFragment).commit();
         return view;
     }
 
-    public static FragmentTransFirst newInstance(){
-        FragmentTransFirst fragmentTransFirst = new FragmentTransFirst();
-        return fragmentTransFirst;
+    public static FirstTransFragment newInstance(){
+        FirstTransFragment firstTransFragment = new FirstTransFragment();
+        return firstTransFragment;
     }
 
     /*
@@ -50,11 +50,11 @@ public class FragmentTransFirst extends Fragment implements FragmentBackHandler{
     * @attention:
     */
     public void showDetailFragment(){
-        fragmentFirst.showToolBar();
+        firstListFragment.showToolBar();
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToFront();
         }
-        getChildFragmentManager().beginTransaction().hide(fragmentFirst).show(fragmentFirstDetail).commit();
+        getChildFragmentManager().beginTransaction().hide(firstListFragment).show(firstDetailFragment).commit();
     }
 
     /*
@@ -69,7 +69,7 @@ public class FragmentTransFirst extends Fragment implements FragmentBackHandler{
         if (getActivity() instanceof MainActivity){
             ((MainActivity) getActivity()).bringViewPagerToBack();
         }
-        getChildFragmentManager().beginTransaction().hide(fragmentFirstDetail).show(fragmentFirst).commit();
+        getChildFragmentManager().beginTransaction().hide(firstDetailFragment).show(firstListFragment).commit();
     }
 
     @Override

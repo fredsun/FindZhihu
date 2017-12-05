@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * Created by fred on 2017/11/13.
  */
 
-public class FragmentFirst extends Fragment implements ObservableScrollViewCallbacks, FrameInterceptLayout.DispatchTouchListener,FragmentBackHandler{
+public class FirstListFragment extends Fragment implements ObservableScrollViewCallbacks, FrameInterceptLayout.DispatchTouchListener,FragmentBackHandler{
     ObservableRecyclerView recyclerFirstFragment;
     ArrayList<String> mList = new ArrayList<>();
     FirstFragmentAdapter mAdapter;
@@ -40,7 +40,7 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
     boolean isAnimInit = false;
     boolean isTitleHide = false;
     Toolbar toolbarTitle;
-    String tag = "FragmentFirst";
+    String tag = "FirstListFragment";
     private int mSlop;
 
 
@@ -65,8 +65,8 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
         recyclerFirstFragment.addOnItemTouchListener(new RecyclerViewClickListener(getContext(), recyclerFirstFragment, new RecyclerViewClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (getParentFragment() instanceof FragmentTransFirst){
-                    ((FragmentTransFirst) getParentFragment()).showDetailFragment();
+                if (getParentFragment() instanceof FirstTransFragment){
+                    ((FirstTransFragment) getParentFragment()).showDetailFragment();
                 }
             }
 
@@ -77,7 +77,7 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
         }));
 
         toolbarTitle = view.findViewById(R.id.detail_toolbar);
-        toolbarTitle.setTitle("FragmentFirst");
+        toolbarTitle.setTitle("FirstListFragment");
         mTitleAnim = new TitleBehaviorAnim(toolbarTitle);
         ViewConfiguration vc = ViewConfiguration.get(getContext());
         mSlop = vc.getScaledTouchSlop();
@@ -87,9 +87,9 @@ public class FragmentFirst extends Fragment implements ObservableScrollViewCallb
 
 
 
-    public static FragmentFirst newInstance(){
-        FragmentFirst FragmentFirst = new FragmentFirst();
-        return FragmentFirst;
+    public static FirstListFragment newInstance(){
+        FirstListFragment FirstListFragment = new FirstListFragment();
+        return FirstListFragment;
     }
 
     @Override

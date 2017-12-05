@@ -13,7 +13,7 @@ import com.findzhihu.R;
  * Created by fred on 2017/11/13.
  */
 
-public class FragmentCommon extends Fragment {
+public class CommonFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -21,8 +21,8 @@ public class FragmentCommon extends Fragment {
         return view;
     }
 
-    public static FragmentCommon newInstance(){
-        FragmentCommon FragmentFourth = new FragmentCommon();
+    public static CommonFragment newInstance(){
+        CommonFragment FragmentFourth = new CommonFragment();
         return FragmentFourth;
     }
 }

@@ -23,8 +23,8 @@ import com.findzhihu.view.ScrollState;
  * Created by fred on 2017/11/13.
  */
 
-public class FragmentFirstDetail extends Fragment implements ObservableScrollViewCallbacks, FragmentBackHandler {
-    String tag = "FragmentFirstDetail";
+public class FirstDetailFragment extends Fragment implements ObservableScrollViewCallbacks, FragmentBackHandler {
+    String tag = "FirstDetailFragment";
     protected BottomBehaviorAnim mBottomAnim;
     protected TitleBehaviorAnim mTitleAnim;
     TextView tvDetailBottom;
@@ -161,14 +161,14 @@ public class FragmentFirstDetail extends Fragment implements ObservableScrollVie
             scrollHome.setScrollViewCallbacks((ObservableScrollViewCallbacks) parentFragment);
         }
         toolbarDetail = view.findViewById(R.id.detail_toolbar);
-        toolbarDetail.setTitle("FragmentFirstDetail");
+        toolbarDetail.setTitle("FirstDetailFragment");
         tvDetailBottom = view.findViewById(R.id.tv_detail_bottom);
         return view;
     }
 
-    public static FragmentFirstDetail newInstance(){
-        FragmentFirstDetail fragmentFirstDetail = new FragmentFirstDetail();
-        return fragmentFirstDetail;
+    public static FirstDetailFragment newInstance(){
+        FirstDetailFragment firstDetailFragment = new FirstDetailFragment();
+        return firstDetailFragment;
     }
 
     @Override
@@ -221,8 +221,8 @@ public class FragmentFirstDetail extends Fragment implements ObservableScrollVie
 
     @Override
     public boolean onBackPressed() {
-        if (getParentFragment() instanceof FragmentTransFirst){
-            ((FragmentTransFirst) getParentFragment()).showListFragment();
+        if (getParentFragment() instanceof FirstTransFragment){
+            ((FirstTransFragment) getParentFragment()).showListFragment();
         }
         return true;
     }
